@@ -8,10 +8,10 @@ Kinematic models are simplifications of dynamic models that ignore tire forces, 
 
 The simulator gives us the below state variables of the car and a series of waypoints with respect to the arbitrary global map coordinate system which we can use to fit a polynomial used to estimate the curve of the road ahead. 
 
-px  | The current location of the vehicle in the x-axis of an arbitrary global map coordinate system.
 
-py  | The current location of the vehicle in the y-axis of an arbitrary global map coordinate system.
-
-psi | The current orientation of the vehicle
-
-v | The current velocity of the vehicle
+| State			            | Description	        					                | 
+|:---------------------:|:---------------------------------------------:| 
+| px	                  | Current location of the vehicle in the x-axis of an arbitrary global map coordinate system.	| 
+| py                    | Current location of the vehicle in the y-axis of an arbitrary global map coordinate system. |
+| psi                   | Current orientation of the vehicle. |
+| v                     | Current velocity of the vehicle. |
