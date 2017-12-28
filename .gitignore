@@ -1,3 +1,7 @@
+build/
+Ipopt-3.12.8/
+*.user
+
 # Prerequisites
 *.d
 
