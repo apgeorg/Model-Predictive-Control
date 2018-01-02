@@ -20,7 +20,7 @@ The simulator gives us the below state variables of the car and a series of wayp
 
 ### Actuators
 
-Actuator inputs allows to control the vehicle state. Most cars have actuators such as steering wheel, throttle and the brake pedal. For simplicity we will consider the throttle and brake pedals as a singular actuator.
+Actuator input allows to control the vehicle state. Most cars have actuators such as steering wheel, throttle and the brake pedal. For simplicity we will consider the throttle and brake pedals as a single actuator.
 
 | State			            | Description	        					                | 
 |:---------------------:|:---------------------------------------------:| 
