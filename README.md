@@ -26,3 +26,10 @@ Actuator input allows to control the vehicle state. Most cars have actuators suc
 |:---------------------:|:---------------------------------------------:| 
 | delta | Steering value or turn angle of the vehicle which is between -25 and 25 degrees.
 | a |  Throttle/Brake value with a range between [-1, 1], where negative values are signifying braking and positive values acceleration.
+
+### Model Equations
+
+px(t+1) = px(t) + v(t) * cos(psi(t)) * dt
+py(t+1) = py(t) + v(t) * sin(psi(t)) * dt
+psi(t+1) = psi(t) + v(t) / Lf * -delta * dt
+v(t+1) = v(t) + a(t) * dt
