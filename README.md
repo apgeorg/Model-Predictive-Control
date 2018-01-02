@@ -33,10 +33,10 @@ px(t+1) = px(t) + v(t) * cos(psi(t)) * dt <br>
 py(t+1) = py(t) + v(t) * sin(psi(t)) * dt <br>
 psi(t+1) = psi(t) + v(t) / Lf * delta * dt <br>
 v(t+1) = v(t) + a(t) * dt <br>
-cte(t+1) = cte(t) - v(t) * sin(epsi(t)) * dt <br>
+cte(t+1) = cte(t) + v(t) * sin(epsi(t)) * dt <br>
 epsi(t+1) = epsi(t) + v(t) / Lf * delta * dt <br>
 
-where
+where:
 
 | Parameter			        | Description	            					            | 
 |:---------------------:|:---------------------------------------------:| 
