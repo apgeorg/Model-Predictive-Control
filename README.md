@@ -22,7 +22,7 @@ The simulator gives us the below state variables of the car and a series of wayp
 
 Actuator input allows to control the vehicle state. Most cars have actuators such as steering wheel, throttle and the brake pedal. For simplicity we will consider the throttle and brake pedals as a single actuator.
 
-| State			            | Description	        					                | 
+| Actuator			            | Description	        					                | 
 |:---------------------:|:---------------------------------------------:| 
 | delta | Steering value or turn angle of the vehicle which is between -25 and 25 degrees.
 | a |  Throttle/Brake value with a range between [-1, 1], where negative values are signifying braking and positive values acceleration.
