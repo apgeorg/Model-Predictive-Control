@@ -1,6 +1,6 @@
 # Model Predictive Control
 
-The objective of this project was to implement a model predictive control in C++ to drive the car around the track. Further, the model parameters were tuned in order to reach maximal speed.
+The objective of this project was to implement a model predictive control (MPC) in C++ to drive the car around a track even with additional latency between commands. Further, the model parameters were tuned in order to reach maximal speed.
 
 ## Model
 Our model is a kinematic model which is a simplification of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. 
