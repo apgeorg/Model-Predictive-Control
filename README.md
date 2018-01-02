@@ -56,12 +56,11 @@ While setting dt = 0.1s, it matches to the 100ms delay latency that we have for 
  
 Finally, I choose N = 10 and dt = 0.1s. With this values it was shown that the car could drive safely and with a higher speed (~ 100mph) around the track.
 
-### Model Predictive Control with Latency
-
-The latency was introduced to simulate real delay of a human driver or physical actuators in case of a self driving car. 
-To handle actuator latency, the state values are calculated using the model and the delay interval. These values are used instead of the initial one. 
-
 ## Polynomial Fitting and MPC Preprocessing
 
 The provided waypoints by the simulator are transformed to vehicle coordinates. After that a 3rd order polynomial is fitted to the transformed waypoints. These polynomial coefficients are used to calculate the cte and epsi later on. They are used by the solver as well to create a reference trajectory.
 
+## Model Predictive Control with Latency
+
+The latency was introduced to simulate real delay of a human driver or physical actuators in case of a self driving car. 
+To handle actuator latency, the state values are calculated using the model and the delay interval. These values are used instead of the initial one. 
