@@ -46,8 +46,8 @@ where:
 
 ## MPC algorithm
 
-Step 1) Define the length of the trajectory, N, and duration of each timestep, dt.
-Step 2) Define vehicle dynamics and actuator limitations along with other constraints.
-Step 3) Define the cost function.
+|Step 1 | Define the length of the trajectory, N, and duration of each timestep, dt. |
+|Step 2 | Define vehicle dynamics and actuator limitations along with other constraints. |
+|Step 3 | Define the cost function. |
 
 
