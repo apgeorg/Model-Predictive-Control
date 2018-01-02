@@ -44,22 +44,24 @@ where:
 | cte | Cross Track Error, which is the difference between our desired position and actual position. |
 | epsi| Orientation Error, which is the difference between our desired orientation and actual orientation. |
 
-## MPC 
+## Timestep Length and Elapsed Duration (N & dt)
 
-Step 1) Define the length of the trajectory, N, and duration of each timestep, dt. I used N = 10 and dt = 100ms. Looking ahead too much is hurting the solution <br>
-Step 2) Transform the points to vehicle's orientation. <br>
-Step 3) Fit a 3rd-order polynomial to the x, y coordinates <br>
-Step 4) Calculate cross track error and orientation error.
+The prediction horizon T is the duration over which future predictions are made.
+T is the product of the number of timesteps N in the horizon and dt is the elapsed time between actuations. T should be as large as possible, while dt should be as small as possible.
 
+A large N allows planning further ahead but it also impacts the controller performance. Small N values makes the car unstable cause of the small planning horizon.    
 
+As mentioned above, the timestep duration dt needs to be as small as possible. Larger values of dt result in less frequent actuations, which makes it harder to accurately approximate a continuous reference trajectory. 
+While setting dt = 0.1s, it matches to the 100ms delay latency that we have for actuators, so it is easy to account for delay.
+ 
+Finally, I choose N = 10 and dt = 0.1s. With this values it was shown that the car could drive safely and with a higher speed (~ 100mph) around the track.
 
-Actual state of the vehicle was "shifted" into the future by 100 ms latency. It helps to reduce negative effects of the latency and increase stability of the controller. The latency was introduced to simulate real delay of a human driver or physical actuators in case of a self driving car. 
+### Model Predictive Control with Latency
 
-The time horizon (T) was chosen to 2 s after experiments. It was shown that the MPC could drive safely around the track with T = 1 s, but on a slow speed. Higher speed requires more future information to make smart decisions in serial turns. Time step duration (dt) was setted equal to the latancy of the simulation (0.1 s), hense, 20 time steps (N) was used.
+The latency was introduced to simulate real delay of a human driver or physical actuators in case of a self driving car. 
+To handle actuator latency, the state values are calculated using the model and the delay interval. These values are used instead of the initial one. 
 
-The cost function parameters were tuned by try-and-error method. All these parameters are stored in the src/MPC.h file. They were tuned in order to reach maximal speed and agressive race style with use of the whole width of the road and breaking before turns.
+## Polynomial Fitting and MPC Preprocessing
 
-Step 1: Transform given coordinates from world to car coordinates
-Step 2: Fit the points of the reference driving line provided using a third degree polynomial
-Step 3: Choosing number of steps we will look ahead and time step. Choose N = 10 and dt = 100ms. Looking ahead too much is hurting the solution
+The provided waypoints by the simulator are transformed to vehicle coordinates. After that a 3rd order polynomial is fitted to the transformed waypoints. These polynomial coefficients are used to calculate the cte and epsi later on. They are used by the solver as well to create a reference trajectory.
 
