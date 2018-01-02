@@ -43,3 +43,11 @@ where:
 | Lf  | Distance between the front of the vehicle and its center of gravity|
 | cte | Difference between our desired position and actual position. |
 | epsi| Difference between our desired orientation and actual orientation. |
+
+## MPC algorithm
+
+Step 1) Define the length of the trajectory, N, and duration of each timestep, dt.
+Step 2) Define vehicle dynamics and actuator limitations along with other constraints.
+Step 3) Define the cost function.
+
+
