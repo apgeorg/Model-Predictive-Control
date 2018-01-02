@@ -17,3 +17,12 @@ The simulator gives us the below state variables of the car and a series of wayp
 | py                    | Current location of the vehicle in the y-axis of an arbitrary global map coordinate system. |
 | psi                   | Current orientation of the vehicle. |
 | v                     | Current velocity of the vehicle. |
+
+### Actuators
+
+Actuator inputs allows to control the vehicle state. Most cars have actuators such as steering wheel, throttle and the brake pedal. For simplicity we will consider the throttle and brake pedals as a singular actuator.
+
+| State			            | Description	        					                | 
+|:---------------------:|:---------------------------------------------:| 
+| delta | Steering value or turn angle of the vehicle which is between -25 and 25 degrees.
+| a |  Throttle/Brake value with negative values signifying braking and positive values signifying acceleration where a can be in the range -1 and 1.
