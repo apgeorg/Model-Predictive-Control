@@ -1,15 +1,13 @@
 # Model Predictive Control
 
-The objective of this project was to implement a model predictive control in C++ to drive the car around the track. 
-The cross track error (CTE) is calculated manually. In addition to that, there's a 100 millisecond latency between actuations commands on top of the connection latency. 
+The objective of this project was to implement a model predictive control in C++ to drive the car around the track. Further, the model parameters were tuned in order to reach maximal speed.
 
-## Kinematic Models
-Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. We want to derive a model that captures how the state evolves over time, and how we can provide an input to change it.
+## Model
+Our model is a kinematic model which is a simplification of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. 
 
 ### State Variables
 
-The simulator gives us the below state variables of the car and a series of waypoints with respect to the arbitrary global map coordinate system which we can use to fit a polynomial used to estimate the curve of the road ahead. 
-
+The simulator provides state variables of the car and a series of waypoints with respect to the arbitrary global map coordinate system which we can use to fit a polynomial used to estimate the curve of the road ahead. 
 
 | State			            | Description	        					                | 
 |:---------------------:|:---------------------------------------------:| 
@@ -24,12 +22,24 @@ Actuator input allows to control the vehicle state. Most cars have actuators suc
 
 | Actuator			            | Description	        					                | 
 |:---------------------:|:---------------------------------------------:| 
-| delta | Steering value or turn angle of the vehicle which is between -25 and 25 degrees.
+| delta | Steering angle of the vehicle which is between -25 and 25 degrees.
 | a |  Throttle/Brake value with a range between [-1, 1], where negative values are signifying braking and positive values acceleration.
 
 ### Model Equations
 
+The model can predict the state on the next time step by taking into account the current state and actuators as follows:
+
 px(t+1) = px(t) + v(t) * cos(psi(t)) * dt <br>
 py(t+1) = py(t) + v(t) * sin(psi(t)) * dt <br>
-psi(t+1) = psi(t) + v(t) / Lf * -delta * dt <br>
+psi(t+1) = psi(t) + v(t) / Lf * delta * dt <br>
 v(t+1) = v(t) + a(t) * dt <br>
+cte(t+1) = cte(t) - v(t) * sin(epsi(t)) * dt <br>
+epsi(t+1) = epsi(t) + v(t) / Lf * delta * dt <br>
+
+where
+
+| Parameter			        | Description	            					            | 
+|:---------------------:|:---------------------------------------------:| 
+| Lf  | Distance between the front of the vehicle and its center of gravity|
+| cte | Difference between our desired position and actual position. |
+| epsi| Difference between our desired orientation and actual orientation. |
